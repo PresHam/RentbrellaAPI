@@ -19,7 +19,8 @@ class Locations(Resource):
         address = location_json['address']
         insertLocation(name, address)
         # Return location created with ID
-        return {"You sent": location_json}, 201
+
+        return {"You sent": location_json}
 
 '''
     def get(self):
