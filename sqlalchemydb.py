@@ -11,7 +11,7 @@ metadata = MetaData(bind=engine)
 
 locations_table = Table('Locations', metadata,
                         Column('id', Integer, primary_key=True, index=True),
-                        Column('name', String(100)),
+                        Column('name', String(100), unique=True),
                         Column('address', String(200))
                         )
 

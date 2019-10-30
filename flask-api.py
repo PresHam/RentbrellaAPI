@@ -3,6 +3,7 @@ from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 import os
 from db_insert import insertLocation
+from db_select import selectLocation
 
 
 # Init app
@@ -13,14 +14,13 @@ api = Api(app)
 # Classe de locais
 class Locations(Resource):
     def post(self):
-        # Receiving Body
-        location_json = request.get_json()
-        name = location_json['name']
+        location_json = request.get_json()  # Receives body
+        name = location_json['name']  # Uses fields name and address
         address = location_json['address']
-        insertLocation(name, address)
+        insertLocation(name, address)  # Insert json to database
         # Return location created with ID
-
-        return {"You sent": location_json}
+        #created_location = selectLocation(location_json['name'])
+        return location_json
 
 '''
     def get(self):
