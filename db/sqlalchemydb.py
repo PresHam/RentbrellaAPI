@@ -15,4 +15,11 @@ locations_table = Table('Locations', metadata,
                         Column('address', String(200))
                         )
 
+
+stations_table = Table('Stations', metadata,
+                       Column('serial', String(30)),
+                       Column('premise_id', Integer, index=True),
+                       Column('name', String(100), unique=True)
+                      )
+
 metadata.create_all()
