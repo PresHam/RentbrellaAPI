@@ -1,10 +1,9 @@
-from flask import Flask, jsonify, request
+from flask import Flask, request
 from flask_restful import Resource, Api
-from sqlalchemy import create_engine
-import os
-from db_insert import insertLocation
-from db_select import selectLocation
-
+from db.db_insert import insertLocation
+from db.db_select import selectLocation
+from db.db_queryLocations import selectLocations
+import json
 
 # Init app
 app = Flask(__name__)
@@ -19,8 +18,12 @@ class Locations(Resource):
         address = location_json['address']
         insertLocation(name, address)  # Insert json to database
         # Return location created with ID
-        #created_location = selectLocation(location_json['name'])
-        return location_json
+        created_location = selectLocation(location_json['name'])
+        query_location = {"id" : created_location[0][0],
+                              "name" : created_location[0][1],
+                              "address" : created_location[0][2]}
+        return query_location
+
 
 '''
     def get(self):

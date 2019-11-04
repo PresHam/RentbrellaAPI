@@ -1,4 +1,4 @@
-from sqlalchemydb import locations_table, engine
+from db.sqlalchemydb import locations_table, engine
 
 
 def insertLocation(name, address):
